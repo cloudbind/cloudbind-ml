@@ -29,11 +29,11 @@ collection_id = dbname["_ids"]
 def parse_json(data):
     return json.loads(json_util.dumps(data))
 
-@csrf_exempt 
+@csrf_exempt
 def faceRecognition(request):
     # Encode faces from a folder
     sfr = SimpleFacerec()
-    sfr.load_encoding_images("images/")
+    sfr.load_encoding_images("deployed_backend/images/")
 
     # # Load Camera
     # cap = cv2.VideoCapture(0)
@@ -45,7 +45,7 @@ def faceRecognition(request):
     '''
     json_data = json.loads(request.body)
     url = json_data['url']
-    
+
     # url = 'https://res.cloudinary.com/dtgkbztkz/image/upload/v1681322957/Sarthak_Bhan_pofunf.jpg'
     req = urllib.request.urlopen(url)
     arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
