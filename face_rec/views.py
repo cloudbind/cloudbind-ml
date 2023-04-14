@@ -65,7 +65,7 @@ def faceRecognition(request):
             "name" : "unknown",
             "img_url" : url
         }
-        collection_name.insert_one(res_json)
+        collection_name.insert_one(new_json)
         return JsonResponse(res_json)
     name = str(name)
     res_json = {
