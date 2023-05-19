@@ -5,7 +5,7 @@ import requests
 import cv2
 import json
 import os
-import gdown
+# import gdown
 # import pymongo
 import urllib.request
 import numpy as np
@@ -53,7 +53,7 @@ def faceRecognition(request):
     # url = 'https://res.cloudinary.com/dtgkbztkz/image/upload/v1681322957/Sarthak_Bhan_pofunf.jpg'
     req = urllib.request.urlopen(url)
     response = requests.get(url)
-    with open("images/image.jpg", "wb") as f:
+    with open("/home/senpai3003/deployed_backend/images/image.jpg", "wb") as f:
         f.write(response.content)
     arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
     img = cv2.imdecode(arr, -1)
@@ -75,8 +75,8 @@ def faceRecognition(request):
                 "tag" : temp_name,
                 "img_url" : url
             }
-            new_name_1 = "images/" + str(temp_name) + ".jpg"
-            os.rename("images/image.jpg", new_name_1)
+            new_name_1 = "/home/senpai3003/deployed_backend/images/" + str(temp_name) + ".jpg"
+            os.rename("/home/senpai3003/deployed_backend/images/image.jpg", new_name_1)
             return JsonResponse(new_json)
         else:
             res_json = {
@@ -86,7 +86,7 @@ def faceRecognition(request):
             # print(type(url))
             # print(str(name))
             print(res_json)
-            os.remove("images/image.jpg")
+            os.remove("/home/senpai3003/deployed_backend/images/image.jpg")
             # res_json = parse_json(res_json)
             # res_json = json.dumps(res_json)
             # collection_name.insert_one(res_json)
