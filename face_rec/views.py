@@ -66,7 +66,7 @@ def faceRecognition(request):
         y1, x2, y2, x1 = face_loc[0], face_loc[1], face_loc[2], face_loc[3]
 
         # cv2.putText(frame, name,(x1, y1 - 10), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 200), 2)
-        print(name)
+    print(face_names)
     for i in range(len(face_names)):
         if face_names[i] == "Unknown":
             temp_name = random.randint(10000000,100000000)
@@ -75,22 +75,23 @@ def faceRecognition(request):
                 "tag" : temp_name,
                 "img_url" : url
             }
-            new_name_1 = str(temp_name) + ".jpg"
-            os.rename("image.jpg", new_name_1)
+            new_name_1 = "images/" + str(temp_name) + ".jpg"
+            os.rename("images/image.jpg", new_name_1)
             return JsonResponse(new_json)
-    res_json = {
-        'tag' : face_names,
-        'img_url' : url
-    }
-    # print(type(url))
-    # print(str(name))
-    print(res_json)
-    os.remove("images/image.jpg")
-    # res_json = parse_json(res_json)
-    # res_json = json.dumps(res_json)
-    # collection_name.insert_one(res_json)
+        else:
+            res_json = {
+                'tag' : face_names,
+                'img_url' : url
+            }
+            # print(type(url))
+            # print(str(name))
+            print(res_json)
+            os.remove("images/image.jpg")
+            # res_json = parse_json(res_json)
+            # res_json = json.dumps(res_json)
+            # collection_name.insert_one(res_json)
 
-    return JsonResponse(res_json)
+            return JsonResponse(res_json)
 
 
     # while True:
